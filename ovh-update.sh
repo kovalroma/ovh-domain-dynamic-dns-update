@@ -10,10 +10,10 @@ DDNS_IP=$(dig +short ${HOSTNAME})
 if [ "$PUBLIC_IP" != "$DDNS_IP" ]; then
 URL="https://www.ovh.com/nic/update?system=dyndns&hostname=${HOSTNAME}&myip=${PUBLIC_IP}"
 
-curl -s -k --user "${USERNAME}:${PASSWORD}" "$URL" 
+logger $(curl -s -k --user "${USERNAME}:${PASSWORD}" "$URL") 
 
 else
-echo 'No changes needed'
+logger "No changes needed"
 
 fi
 
